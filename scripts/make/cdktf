@@ -1,0 +1,57 @@
+# Makefile for managing a CDKTF project with NodeJS
+
+# .PHONY is used to specify those targets which are not filenames.
+.PHONY : install synthesize deploy diff destroy clean
+
+# Define the default target if no target is provided to `make`
+.DEFAULT_GOAL : = help
+
+# Define variables
+STACK_NAME ? = my-stack
+
+# Install dependencies
+## install: Installs the necessary dependencies for the project.
+install :
+@ echo "Installing NodeJS dependencies..."
+npm install
+@ echo "Installing CDKTF CLI..."
+npm install - g cdktf-cli
+@ echo "Installing CDKTF dependencies..."
+cdktf get
+
+# Synthesize CDKTF
+## synthesize: Synthesizes the CDKTF application to Terraform configuration files.
+synthesize :
+@ echo "Synthesizing CDKTF application..."
+cdktf synth
+
+# Deploy CDKTF
+## deploy: Deploys the synthesized Terraform configuration.
+deploy :
+@ echo "Deploying CDKTF application..."
+cdktf deploy $ (STACK_NAME) - -auto-approve
+
+# Show differences
+## diff: Shows the differences between the deployed stack and the current state.
+diff :
+@ echo "Showing differences..."
+cdktf diff $ (STACK_NAME)
+
+# Destroy CDKTF
+## destroy: Destroys the deployed infrastructure.
+destroy :
+@ echo "Destroying CDKTF application..."
+cdktf destroy $ (STACK_NAME) - -auto-approve
+
+# Clean up
+## clean: Removes the synthesized Terraform configuration files.
+clean :
+@ echo "Cleaning up the synthesized files..."
+rm - rf cdktf.out
+
+# Help
+## help: Prints the help information.
+help : Makefile
+@ echo " Choose a command run in " $ (PROJECTNAME) ":"
+@ sed - n ' s / ^ ##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
+

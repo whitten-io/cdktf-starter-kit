@@ -1,0 +1,12 @@
+{
+  "ignore": [".git", "node_modules/**/node_modules"],
+  "verbose": true,
+  "watch": ["./src", "./tests"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "ts",
+  "execMap": {
+    "ts": "npm run synth && npm run diff && npm run test && npm run dev:server"
+  }
+}

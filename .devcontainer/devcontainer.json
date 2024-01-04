@@ -1,0 +1,41 @@
+{
+  "name": "Ubuntu",
+  "additionalProperties": {
+    "extensions": [
+      "ms-vscode.makefile-tools",
+      "ms-vscode.powershell",
+      "ms-vscode.js-debug-nightly",
+      "ms-vscode.vscode-typescript-next",
+      "ms-vscode-remote.remote-containers",
+      "hashicorp.terraform",
+      "mikestead.dotenv",
+      "dbaeumer.vscode-eslint",
+      "ZainChen.json",
+      "leizongmin.node-module-intellisense"
+    ]
+  },
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "TAG": "latest"
+    }
+  },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.makefile-tools",
+        "ms-vscode.powershell",
+        "ms-vscode.js-debug-nightly",
+        "ms-vscode.vscode-typescript-next",
+        "ms-vscode-remote.remote-containers",
+        "hashicorp.terraform",
+        "mikestead.dotenv",
+        "dbaeumer.vscode-eslint",
+        "ZainChen.json",
+        "leizongmin.node-module-intellisense"
+      ]
+    }
+  }
+  //"mounts": ["source=../,target=,type=bind,consistency=cached"]
+}
